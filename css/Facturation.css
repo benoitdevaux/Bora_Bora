@@ -1,0 +1,135 @@
+/*--------- Facturation ---------*/
+
+label {
+    display: block;
+    font: .9rem 'Fira Sans', sans-serif;
+    font-family: 'lobster', cursive;
+    font-size: 25px;
+    text-align: center;
+    color: orange;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.l-banner {
+    text-align: center;
+}
+
+.img1 {
+    max-height: 15rem;
+}
+
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+td {
+    text-align: center;
+}
+
+.echo {
+    width: 360px;
+    background: #f1f1f1;
+    height: 500px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
+
+h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+h3 {
+    font-family: Apple Chancery;
+    font-size: 20px;
+}
+
+
+button {
+    display: block;
+    width: 20%;
+    height: 40px;
+    border: none;
+    background: linear-gradient(to right, #F5F5DC, #87cefa) fixed;
+    background-size: 20%;
+    cursor: pointer;
+    transition: .5s;
+    text-align: center;
+    position: center;
+    margin-left: 60%;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 90%;
+}
+
+tr {
+    border: 1px solid black;
+    width: 20%
+}
+
+th {
+    border: 1px solid black;
+    width: 20%;
+}
+
+
+.total {
+    text-align: center;
+    font-size: 25px;
+    font-family: Snell Roundhand;
+
+}
+
+/****************************footer************************/
+footer {
+    width: 950px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 31px 0px 20px 0;
+}
+
+footer p {
+    float: left;
+    text-align: center;
+    width: 580px;
+}
+
+.soc-icons {
+    overflow: hidden;
+    float: right;
+    margin: 8px 73px 0 0;
+}
+
+.soc-icons span {
+    display: inline-block;
+    float: left;
+    color: #000;
+    font-size: 20px;
+    line-height: 27px;
+    margin-right: 17px;
+}
+
+.soc-icons a {
+    display: inline-block;
+    float: left;
+    margin-right: 19px;
+}
+
+.soc-icons a:hover img {
+    opacity: 0.7;
+}
