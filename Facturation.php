@@ -65,7 +65,7 @@ $req = ("SELECT sejour.Date_Arrivee, sejour.Date_Depart, chambre_cate.Libelle,(s
         ON chambre_cate.Id_Cat = chambre.Categorie
       INNER join client 
         ON sejour.num_cli = client.num_client
-WHERE Num_Sejour = " . $_SESSION['numSej']);
+WHERE Num_Sejour = " . $_POST['numSej']);
 
 $res = $connect->query($req);
 verif_erreur_mysql($res, $connect);
@@ -87,7 +87,7 @@ $req1 = ("SELECT spa_facture.Date_Spa, `Lib_Soin`, spa_facture.Quantite_Spa, spa
         ON num_cli = num_client
       Inner Join chambre_sejour 
         ON Num_Sejour= chambre_sejour.Num_sej
-WHERE Num_Sejour = " . $_SESSION['numSej']);
+WHERE Num_Sejour = " . $_POST['numSej']);
 
 $res_spa = $connect->query($req1);
 verif_erreur_mysql($res_spa, $connect);
@@ -108,7 +108,7 @@ $req2 = ("SELECT brasserie_facture.date, lib_plat, brasserie_facture.Quantite, b
         ON brasserie.num_plat = brasserie_concerne.NumPlat
       Inner Join chambre_sejour 
         ON Num_Sejour= chambre_sejour.Num_sej
-WHERE Num_Sejour = " . $_SESSION['numSej']);
+WHERE Num_Sejour = " . $_POST['numSej']);
 
 
 $res_brass = $connect->query($req2);
@@ -130,11 +130,18 @@ $req3 = ("SELECT bar_facture.Date, Lib_cons, bar_facture.Quantite, consommation.
         ON consommation.num_cons = bar_concerne.Num_Conso
       Inner Join chambre_sejour 
         ON Num_Sejour = chambre_sejour.Num_sej
-WHERE Num_Sejour = " . $_SESSION['numSej']);
+WHERE Num_Sejour = " . $_POST['numSej']);
 
 
 $res_bar = $connect->query($req3);
 verif_erreur_mysql($res_bar, $connect);
+
+$req4 = ("SELECT nom FROM sejour
+    INNER JOIN client ON sejour.num_cli = client.Num_Client
+    WHERE Num_Sejour = ". $_POST['numSej']);
+
+$res_client = $connect->query($req4);
+verif_erreur_mysql($res_client, $connect);
 
 
 /////////////////////////////////////////////////////////////
@@ -142,7 +149,11 @@ verif_erreur_mysql($res_bar, $connect);
 ?>
 <h2 id='HOTEL de Bora-Bora'>HOTEL de Bora-Bora</h2>
 <br>
-<h3> Mr/Mme : <?= $_SESSION['Nom'] ?></h3>
+<?php 
+while($ligne = $res_client->fetch()) {
+    $nom = $ligne[0];
+} ?>
+<h3> Mr/Mme : <?= $nom ?></h3>
 <h3>Chambre : <?= $_SESSION["numChambre"] ?></h3>
 
 <table>
@@ -175,6 +186,7 @@ verif_erreur_mysql($res_bar, $connect);
         <?php
     }
     //boucle pour le spa
+    $Prix_spa = 0;
     while ($ligne = $res_spa->fetch()) {
         $Date_Spa = $ligne[0];
         $Lib_Soin = $ligne[1];
@@ -194,6 +206,7 @@ verif_erreur_mysql($res_bar, $connect);
     }
     //boucle pour la brasserie
     $total_brass = 0;
+    $prix_plat = 0;
     while ($ligne = $res_brass->fetch()) {
         $date = $ligne[0];
         $lib_plat = $ligne[1];
@@ -214,6 +227,7 @@ verif_erreur_mysql($res_bar, $connect);
     }
     //boucle pour le bar
     $total_bar = 0;
+    $prix_cons = 0;
     while ($ligne = $res_bar->fetch()) {
         $Date = $ligne[0];
         $Lib_cons = $ligne[1];

@@ -46,18 +46,22 @@ function connexion_bd()
     <?php
     //boucle pour la chambre
     while ($ligne = $res->fetch()) {
-        $_SESSION['numSej'] = $ligne[0];
+        $num = $ligne[0];
         $Date_Arrivee = $ligne[1];
         $Date_Depart = $ligne[2];
-        $_SESSION['Nom'] = $ligne[3];
+        $nom = $ligne[3];
         $Prenom = $ligne[4];
         ?>
         <tr>
-            <td><?= $_SESSION['numSej'] ?></td>
+            <td><?= $num ?></td>
             <td><?= $Date_Arrivee ?> AU <?= $Date_Depart ?></td>
-            <td><?= $_SESSION['Nom']  ?></td>
+            <td><?= $nom  ?></td>
             <td><?= $Prenom ?></td>
-            <td><a href="Facturation.php">Facture</a></td>
         </tr>
         <?php } ?>
+    </table>
+        <form method="POST" action="Facturation.php">
+            <input type="text" name="numSej"/>
+            <input type="submit"/>
+        </form>
     </main>
